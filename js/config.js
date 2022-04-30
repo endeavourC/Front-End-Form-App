@@ -2,6 +2,7 @@ export const API_URL = `https://picsum.photos/`;
 
 export const initialState = {
 	currentStep: 1,
+	steps: [],
 	customer: {
 		name: "",
 		surname: "",
