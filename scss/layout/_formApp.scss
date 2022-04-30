@@ -26,7 +26,14 @@
 		}
 	}
 
+	&__preview {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 	&__grid {
+		margin-top: 100px;
 		display: grid;
 		grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
 	}
