@@ -1,4 +1,10 @@
 import State from "@/js/State";
+import {
+	FORM_APP_PREV_BUTTON_ID,
+	FORM_APP_NEXT_BUTTON_ID,
+	FORM_APP_STEP_CLASS,
+	FORM_APP_STEP_ACTIVE_CLASS,
+} from "@/js/config";
 
 class StepsUI {
 	constructor(headingElement, contentElemenet) {
@@ -14,13 +20,21 @@ class StepsUI {
 	renderHeadingElement() {
 		this.headingElement.innerHTML = "";
 		this.headingElement.appendChild(
-			this.createButton("Wstecz", this.handlePrevStep.bind(this))
+			this.createButton(
+				"Wstecz",
+				this.handlePrevStep.bind(this),
+				FORM_APP_PREV_BUTTON_ID
+			)
 		);
 
 		this.headingElement.appendChild(this.generateSteps());
 
 		this.headingElement.appendChild(
-			this.createButton("Dalej", this.handleNextStep.bind(this))
+			this.createButton(
+				"Dalej",
+				this.handleNextStep.bind(this),
+				FORM_APP_NEXT_BUTTON_ID
+			)
 		);
 	}
 
@@ -33,12 +47,12 @@ class StepsUI {
 	generateStep(step, index) {
 		const stepNumber = index + 1;
 		const stepContainer = document.createElement("div");
-		stepContainer.classList.add("formApp__step");
+		stepContainer.classList.add(FORM_APP_STEP_CLASS);
 		stepContainer.innerText = `${stepNumber}. ${step.label}`;
-		stepContainer.classList.remove("formApp__step--active");
+		stepContainer.classList.remove(FORM_APP_STEP_ACTIVE_CLASS);
 
 		if (index === State.getProperty("currentStep") - 1) {
-			stepContainer.classList.add("formApp__step--active");
+			stepContainer.classList.add(FORM_APP_STEP_ACTIVE_CLASS);
 		}
 
 		return stepContainer;
@@ -54,11 +68,23 @@ class StepsUI {
 		return stepsContainer;
 	}
 
-	createButton(innerText, callback) {
+	createButton(innerText, callback, buttonType) {
 		const button = document.createElement("button");
 		button.classList.add("button");
 		button.innerText = innerText;
 		button.addEventListener("click", callback);
+
+		switch (buttonType) {
+			case FORM_APP_PREV_BUTTON_ID:
+				button.disabled = State.getProperty("currentStep") === 1;
+				break;
+			case FORM_APP_NEXT_BUTTON_ID:
+				button.disabled =
+					State.getProperty("steps").length ===
+					State.getProperty("currentStep");
+				break;
+		}
+
 		return button;
 	}
 

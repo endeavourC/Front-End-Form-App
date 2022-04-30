@@ -13,4 +13,9 @@
 		background-color: $color-secondary;
 		box-shadow: $shadow-primary;
 	}
+
+	&:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
 }
