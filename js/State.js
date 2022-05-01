@@ -7,10 +7,11 @@ class State {
 
 	static setProperty(callback) {
 		const newState = callback(this.#state);
+		const oldState = this.#state;
 		this.#state = newState;
 
-		this.subscribers.forEach((s) => {
-			s(newState);
+		this.subscribers.forEach((subscriber) => {
+			subscriber(newState, oldState);
 		});
 	}
 
