@@ -6,11 +6,11 @@ import * as frontImageUrl from "@/images/shirt_front.png";
 class Preview {
 	constructor(previewElement) {
 		this.previewElement = document.querySelector(previewElement);
-
 		this.render();
 	}
 
 	render() {
+		this.previewElement.innerHTML = "";
 		this.previewElement.appendChild(this.createBasicImage());
 	}
 
