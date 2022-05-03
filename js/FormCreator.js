@@ -32,6 +32,7 @@ class FormCreator {
 
 		if (fieldType === "radio") {
 			input.checked = fieldIsChecked;
+			field.classList.add("formField--row");
 		}
 
 		field.appendChild(label);
