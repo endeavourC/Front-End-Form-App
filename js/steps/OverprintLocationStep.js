@@ -3,7 +3,6 @@ import State from "@/js/State";
 import FormCreator from "@/js/FormCreator";
 
 const overprintView = (rootElement) => {
-	rootElement.innerHTML = "";
 	const formCreator = new FormCreator();
 
 	const handleOverprintChange = (ev) => {

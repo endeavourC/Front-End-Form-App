@@ -9,8 +9,6 @@ import {
 } from "@/js/validation-rules";
 
 const customerDataView = (rootElement) => {
-	rootElement.innerHTML = "";
-
 	const formCreator = new FormCreator();
 
 	const handleInputChange = (ev) => {

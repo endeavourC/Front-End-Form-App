@@ -3,8 +3,6 @@ import FetchImage from "@/js/FetchImage";
 import State from "@/js/State";
 
 const pickImageView = (rootElement) => {
-	rootElement.innerHTML = "";
-
 	const handleNextImage = (ev) => {
 		ev.preventDefault();
 		FetchImage.setNextImage();
