@@ -1,7 +1,8 @@
-class FormCreator {
-	constructor(validator = null) {
-		this.validator = validator;
+import State from "@/js/State";
 
+class FormCreator {
+	constructor() {
+		this.errors = [];
 		this.formContainerElement = document.createElement("div");
 	}
 
@@ -40,16 +41,10 @@ class FormCreator {
 		field.appendChild(input);
 
 		if (fieldValidationRules.length) {
-			const messageContainer = document.createElement("div");
-			field.appendChild(messageContainer);
+			this.handleValidation(fieldValidationRules, input, field);
 
-			input.addEventListener("input", (ev) => {
-				messageContainer.innerHTML = "";
-				fieldValidationRules.forEach((rule) => {
-					if (rule.isInvalid(ev.target.value)) {
-						rule.printMessage(messageContainer);
-					}
-				});
+			fieldValidationRules.forEach((rule) => {
+				this.validateFieldByRule(rule, input, input.value);
 			});
 		}
 
@@ -58,6 +53,37 @@ class FormCreator {
 
 	renderFields(rootElement) {
 		rootElement.appendChild(this.formContainerElement);
+	}
+
+	handleValidation(validationRules, input, field) {
+		const messageContainer = document.createElement("div");
+		field.appendChild(messageContainer);
+
+		input.addEventListener("input", (ev) => {
+			messageContainer.innerHTML = "";
+			const inputValue = ev.target.value;
+			validationRules.forEach((rule) => {
+				this.validateFieldByRule(rule, input, inputValue, messageContainer);
+			});
+		});
+	}
+
+	validateFieldByRule(rule, input, value, messageContainer = null) {
+		if (rule.isInvalid(value)) {
+			if (messageContainer) {
+				rule.printMessage(messageContainer);
+			}
+			this.errors.push({ fieldName: input.name, message: rule.message });
+		} else {
+			this.errors = this.errors.filter(
+				(error) => error.fieldName !== input.name
+			);
+		}
+
+		State.setProperty((prevState) => ({
+			...prevState,
+			disableNextButton: !!this.errors.length,
+		}));
 	}
 }
 
