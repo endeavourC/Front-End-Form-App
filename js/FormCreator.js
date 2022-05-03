@@ -13,6 +13,7 @@ class FormCreator {
 		fieldValue,
 		fieldCallback,
 		fieldIsChecked,
+		fieldValidationRules = [],
 	}) {
 		const field = document.createElement("div");
 		field.classList.add("formField");
@@ -37,6 +38,20 @@ class FormCreator {
 
 		field.appendChild(label);
 		field.appendChild(input);
+
+		if (fieldValidationRules.length) {
+			const messageContainer = document.createElement("div");
+			field.appendChild(messageContainer);
+
+			input.addEventListener("input", (ev) => {
+				messageContainer.innerHTML = "";
+				fieldValidationRules.forEach((rule) => {
+					if (rule.isInvalid(ev.target.value)) {
+						rule.printMessage(messageContainer);
+					}
+				});
+			});
+		}
 
 		this.formContainerElement.appendChild(field);
 	}
