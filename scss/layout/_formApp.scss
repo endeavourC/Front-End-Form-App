@@ -6,6 +6,10 @@
 	overflow: hidden;
 	min-height: 530px;
 
+	&__stepContent {
+		animation: fadeIn 0.5s ease-in-out forwards;
+	}
+
 	&__steps {
 		display: flex;
 		align-items: center;
@@ -43,7 +47,7 @@
 	}
 
 	&__grid {
-		margin-top: 100px;
+		margin-top: 35px;
 		display: grid;
 		min-height: 236px;
 		grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
@@ -54,5 +58,14 @@
 		font-size: 2.2rem;
 		color: $color-primary;
 		font-weight: bold;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
