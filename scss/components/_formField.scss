@@ -26,4 +26,15 @@
 		border-radius: 0px;
 		border: 1px solid $color-primary;
 	}
+
+	&__message {
+		margin: 5px 0;
+		&--error {
+			color: $color-error;
+		}
+
+		&--success {
+			color: $color-success;
+		}
+	}
 }
