@@ -18,7 +18,9 @@ class StepsUI {
 	}
 
 	renderHeadingElement() {
+		this.handleDisableButtons();
 		this.headingElement.innerHTML = "";
+
 		this.headingElement.appendChild(
 			this.createButton(
 				"Wstecz",
@@ -41,7 +43,7 @@ class StepsUI {
 	renderContentElement() {
 		const step =
 			State.getProperty("steps")[State.getProperty("currentStep") - 1];
-		this.contentElemenet.innerHTML = step.callback();
+		step.callback(this.contentElemenet);
 	}
 
 	generateStep(step, index) {
@@ -51,7 +53,7 @@ class StepsUI {
 		stepContainer.innerText = `${stepNumber}. ${step.label}`;
 		stepContainer.classList.remove(FORM_APP_STEP_ACTIVE_CLASS);
 
-		if (index === State.getProperty("currentStep") - 1) {
+		if (stepNumber === State.getProperty("currentStep")) {
 			stepContainer.classList.add(FORM_APP_STEP_ACTIVE_CLASS);
 		}
 
@@ -72,16 +74,14 @@ class StepsUI {
 		const button = document.createElement("button");
 		button.classList.add("button");
 		button.innerText = innerText;
-		button.addEventListener("click", callback);
+		button.addEventListener("click", () => callback(button));
 
 		switch (buttonType) {
 			case FORM_APP_PREV_BUTTON_ID:
-				button.disabled = State.getProperty("currentStep") === 1;
+				button.disabled = State.getProperty("disablePrevButton");
 				break;
 			case FORM_APP_NEXT_BUTTON_ID:
-				button.disabled =
-					State.getProperty("steps").length ===
-					State.getProperty("currentStep");
+				button.disabled = State.getProperty("disableNextButton");
 				break;
 		}
 
@@ -89,10 +89,6 @@ class StepsUI {
 	}
 
 	handlePrevStep() {
-		if (State.getProperty("currentStep") === 1) {
-			return;
-		}
-
 		State.setProperty((prevState) => ({
 			...prevState,
 			currentStep: prevState.currentStep - 1,
@@ -100,14 +96,24 @@ class StepsUI {
 	}
 
 	handleNextStep() {
-		if (State.getProperty("currentStep") >= State.getProperty("steps").length) {
-			return;
-		}
-
 		State.setProperty((prevState) => ({
 			...prevState,
 			currentStep: prevState.currentStep + 1,
 		}));
+	}
+
+	handleDisableButtons() {
+		State.setProperty((prevState) => ({
+			...prevState,
+			disablePrevButton: State.getProperty("currentStep") === 1,
+		}));
+
+		if (State.getProperty("currentStep") >= State.getProperty("steps").length) {
+			State.setProperty((prevState) => ({
+				...prevState,
+				disableNextButton: true,
+			}));
+		}
 	}
 }
 
