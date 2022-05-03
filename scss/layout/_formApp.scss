@@ -4,6 +4,7 @@
 	padding: 35px;
 	border-radius: 10px;
 	overflow: hidden;
+	min-height: 530px;
 
 	&__steps {
 		display: flex;
@@ -27,14 +28,24 @@
 	}
 
 	&__preview {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
+	&__previewPickedImage {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		max-width: 200px;
+	}
+
 	&__grid {
 		margin-top: 100px;
 		display: grid;
+		min-height: 236px;
 		grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
 	}
 
