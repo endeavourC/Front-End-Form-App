@@ -70,9 +70,7 @@ class FormCreator {
 
 	validateFieldByRule(rule, input, value, messageContainer = null) {
 		if (rule.isInvalid(value)) {
-			if (messageContainer) {
-				rule.printMessage(messageContainer);
-			}
+			messageContainer && rule.printMessage(messageContainer);
 			this.errors.push({ fieldName: input.name, message: rule.message });
 		} else {
 			this.errors = this.errors.filter(
