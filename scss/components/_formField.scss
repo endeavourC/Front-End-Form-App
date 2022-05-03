@@ -1,6 +1,17 @@
 .formField {
+	$self: &;
 	display: flex;
 	flex-direction: column;
+
+	&--row {
+		flex-direction: row-reverse;
+		align-items: center;
+		justify-content: flex-end;
+
+		#{$self}__label {
+			margin-left: 15px;
+		}
+	}
 
 	&__label {
 		margin: 10px 0;
