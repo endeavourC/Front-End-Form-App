@@ -3,8 +3,17 @@
 	justify-content: flex-start;
 	align-items: center;
 	margin-top: 20px;
+	flex-direction: column;
+	@include mq($breakpoint-md) {
+		flex-direction: row;
+	}
 
 	button {
-		margin-right: 15px;
+		margin: 10px 0;
+		width: 100%;
+		@include mq($breakpoint-md) {
+			margin-right: 15px;
+			width: auto;
+		}
 	}
 }

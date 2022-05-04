@@ -18,20 +18,39 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		flex-direction: column;
+		@include mq($breakpoint-md) {
+			flex-direction: row;
+		}
+
+		button {
+			width: 100%;
+			@include mq($breakpoint-md) {
+				width: auto;
+			}
+		}
 	}
 
 	&__stepsContainer {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
+		margin: 25px 0;
+		@include mq($breakpoint-md) {
+			flex-direction: row;
+		}
 	}
 
 	&__step {
-		margin: 0 10px;
+		margin: 10px 0;
 		text-transform: uppercase;
 		font-weight: bold;
 		&--active {
 			color: $color-primary;
+		}
+		@include mq($breakpoint-md) {
+			margin: 0 10px;
 		}
 	}
 
@@ -40,6 +59,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-top: 75px;
+		@include mq($breakpoint-md) {
+		}
 	}
 
 	&__previewPickedImage {
@@ -54,14 +76,21 @@
 		margin-top: 35px;
 		display: grid;
 		min-height: 236px;
-		grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
+		grid-template-columns: minmax(0, 1fr);
+		@include mq($breakpoint-md) {
+			grid-template-columns: minmax(0, 0.6fr) minmax(0, 0.4fr);
+		}
 	}
 
 	&__price {
 		margin-top: 50px;
-		font-size: 2.2rem;
 		color: $color-primary;
 		font-weight: bold;
+		font-size: 1.8rem;
+		text-align: center;
+		@include mq($breakpoint-md) {
+			font-size: 2.2rem;
+		}
 	}
 }
 
