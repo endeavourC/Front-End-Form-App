@@ -1,6 +1,6 @@
-import Step from "@/js/Step";
-import State from "@/js/State";
-import FormCreator from "@/js/FormCreator";
+import Step from "@/js/core/Step";
+import State from "@/js/core/State";
+import FormCreator from "@/js/core/FormCreator";
 
 const overprintView = (rootElement) => {
 	const formCreator = new FormCreator();

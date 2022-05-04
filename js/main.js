@@ -1,8 +1,8 @@
 import "@/scss/style.scss";
-import App from "@/js/App";
-import StepsUI from "@/js/StepsUI";
-import Preview from "@/js/Preview";
-import CurrentPriceUI from "@/js/CurrentPriceUI";
+import App from "@/js/core/App";
+import StepsUI from "@/js/core/StepsUI";
+import Preview from "@/js/core/Preview";
+import CurrentPriceUI from "@/js/core/CurrentPriceUI";
 import overprintLocationStep from "@/js/steps/OverprintLocationStep";
 import pickImageStep from "@/js/steps/PickImageStep";
 import customerDataStep from "@/js/steps/CustomerDataStep";

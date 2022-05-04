@@ -1,6 +1,6 @@
-import State from "@/js/State";
-import FetchImage from "@/js/FetchImage";
-import ThankYouUI from "@/js/ThankYouUI";
+import State from "@/js/core/State";
+import FetchImage from "@/js/core/FetchImage";
+import ThankYouUI from "@/js/core/ThankYouUI";
 
 class App {
 	constructor(stepsUI, previewUI, currentPriceUI) {

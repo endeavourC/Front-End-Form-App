@@ -1,4 +1,4 @@
-import State from "@/js/State";
+import State from "@/js/core/State";
 import {
 	FORM_APP_PREV_BUTTON_ID,
 	FORM_APP_NEXT_BUTTON_ID,

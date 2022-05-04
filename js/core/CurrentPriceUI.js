@@ -1,4 +1,4 @@
-import State from "@/js/State";
+import State from "@/js/core/State";
 
 class CurrentPriceUI {
 	constructor(priceElement) {

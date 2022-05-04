@@ -1,6 +1,6 @@
-import Step from "@/js/Step";
-import FetchImage from "@/js/FetchImage";
-import State from "@/js/State";
+import Step from "@/js/core/Step";
+import FetchImage from "@/js/core/FetchImage";
+import State from "@/js/core/State";
 
 const pickImageView = (rootElement) => {
 	const handleNextImage = (ev) => {

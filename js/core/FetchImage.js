@@ -1,5 +1,5 @@
 import { API_URL } from "@/js/config";
-import State from "@/js/State";
+import State from "@/js/core/State";
 
 class FetchImage {
 	static currentImageID = Math.floor(Math.random() * 100);

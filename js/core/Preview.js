@@ -1,6 +1,5 @@
 import { PRINT_LOCATION_BACK } from "@/js/config";
-import State from "@/js/State";
-import FetchImage from "@/js/FetchImage";
+import State from "@/js/core/State";
 import * as backImageUrl from "@/images/shirt_back.png";
 import * as frontImageUrl from "@/images/shirt_front.png";
 

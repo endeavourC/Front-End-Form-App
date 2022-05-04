@@ -1,5 +1,5 @@
-import Step from "@/js/Step";
-import State from "@/js/State";
+import Step from "@/js/core/Step";
+import State from "@/js/core/State";
 import { getProductLocationLabel, createTextField } from "@/js/helpers";
 
 const summaryView = (rootElement) => {
