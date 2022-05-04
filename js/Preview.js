@@ -18,6 +18,8 @@ class Preview {
 
 	createShirtImage() {
 		const image = document.createElement("img");
+		image.width = "218";
+		image.height = "236";
 		image.src =
 			State.getProperty("product").print_location === PRINT_LOCATION_BACK
 				? backImageUrl.default
