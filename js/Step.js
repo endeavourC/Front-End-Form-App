@@ -5,10 +5,13 @@ class Step {
 		this.callback = callback;
 	}
 
-	render(rootElement) {
-		rootElement.innerHTML = "";
+	render(rootElement, withAnimation) {
 		const contentElementInner = document.createElement("div");
 		contentElementInner.classList.add("formApp__stepContent");
+
+		withAnimation
+			? contentElementInner.classList.add("formApp__stepContent--active")
+			: contentElementInner.classList.remove("formApp__stepContent--active");
 
 		rootElement.appendChild(contentElementInner);
 
