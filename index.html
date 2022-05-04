@@ -12,7 +12,23 @@
 		<title>Frontend Form Project App</title>
 	</head>
 	<body>
-		<div id="app"></div>
+		<noscript>
+			<p>
+				Ta strona wymaga włączonego Javascript. Włącz go, aby móc korzystać z
+				formularza.
+			</p>
+		</noscript>
+		<section class="container">
+			<h1 class="headline headline--center">Formularz Zamówienia</h1>
+			<form class="formApp" id="app">
+				<header class="formApp__steps"></header>
+				<div class="formApp__grid">
+					<div class="formApp__content"></div>
+					<aside class="formApp__preview"></aside>
+				</div>
+				<footer class="formApp__summary"></footer>
+			</form>
+		</section>
 		<script type="module" src="/js/main.js"></script>
 	</body>
 </html>
