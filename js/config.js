@@ -12,6 +12,9 @@ export const PRINT_LOCATION_FRONT = "front";
 export const initialState = {
 	currentStep: 1,
 	steps: [],
+	disableNextButton: false,
+	disablePrevButton: true,
+	isFinalized: false,
 	customer: {
 		name: "",
 		surname: "",
@@ -25,6 +28,7 @@ export const initialState = {
 	},
 	product: {
 		print_location: PRINT_LOCATION_FRONT,
+		image_src: "",
 		price: PRODUCT_BASE_PRICE,
 	},
 };
