@@ -4,7 +4,7 @@ import State from "@/js/State";
 class FetchImage {
 	static currentImageID = Math.floor(Math.random() * 100);
 
-	static imageSize = 250;
+	static imageSize = 530;
 
 	static async generateImage() {
 		const request = await fetch(
