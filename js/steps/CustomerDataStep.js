@@ -11,6 +11,13 @@ import {
 const customerDataView = (rootElement) => {
 	const formCreator = new FormCreator();
 
+	formCreator.subscribe((errors) => {
+		State.setProperty((prevState) => ({
+			...prevState,
+			disableNextButton: errors.length,
+		}));
+	});
+
 	const handleInputChange = (ev) => {
 		const { name, value } = ev.target;
 		State.setProperty((prevState) => {
