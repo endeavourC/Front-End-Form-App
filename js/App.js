@@ -1,10 +1,13 @@
 import State from "@/js/State";
+import FetchImage from "@/js/FetchImage";
+import ThankYouUI from "@/js/ThankYouUI";
 
 class App {
 	constructor(stepsUI, previewUI, currentPriceUI) {
 		this.stepsUI = stepsUI;
 		this.previewUI = previewUI;
 		this.currentPriceUI = currentPriceUI;
+		this.rootElement = document.querySelector(".formApp");
 	}
 
 	addStep(step) {
@@ -16,6 +19,7 @@ class App {
 
 	start() {
 		this.stepsUI.render();
+		FetchImage.generateImage();
 
 		State.subscribe((state, oldState) => {
 			if (state.currentStep !== oldState.currentStep) {
@@ -35,6 +39,15 @@ class App {
 			if (state.product !== oldState.product) {
 				this.previewUI.render();
 				this.stepsUI.render();
+			}
+		});
+
+		State.subscribe((state, oldState) => {
+			if (state.isFinalized !== oldState.isFinalized) {
+				this.rootElement.innerHTML = "";
+				const thankYou = new ThankYouUI(this.rootElement);
+
+				thankYou.render();
 			}
 		});
 	}
