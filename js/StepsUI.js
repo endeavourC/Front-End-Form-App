@@ -7,18 +7,17 @@ import {
 } from "@/js/config";
 
 class StepsUI {
-	constructor(headingElement, contentElemenet) {
+	constructor(headingElement, contentElement) {
 		this.headingElement = document.querySelector(headingElement);
-		this.contentElemenet = document.querySelector(contentElemenet);
+		this.contentElement = document.querySelector(contentElement);
 	}
 
-	render() {
+	render(withAnimation = false) {
 		this.renderHeadingElement();
-		this.renderContentElement();
+		this.renderContentElement(withAnimation);
 	}
 
 	renderHeadingElement() {
-		this.handleDisableButtons();
 		this.headingElement.innerHTML = "";
 
 		this.headingElement.appendChild(
@@ -40,10 +39,14 @@ class StepsUI {
 		);
 	}
 
-	renderContentElement() {
-		const step =
-			State.getProperty("steps")[State.getProperty("currentStep") - 1];
-		step.callback(this.contentElemenet);
+	renderContentElement(withAnimation) {
+		this.contentElement.innerHTML = "";
+		const currentStep = State.getProperty("currentStep");
+
+		State.getProperty("steps")[currentStep - 1].render(
+			this.contentElement,
+			withAnimation
+		);
 	}
 
 	generateStep(step, index) {
@@ -108,12 +111,11 @@ class StepsUI {
 			disablePrevButton: State.getProperty("currentStep") === 1,
 		}));
 
-		if (State.getProperty("currentStep") >= State.getProperty("steps").length) {
-			State.setProperty((prevState) => ({
-				...prevState,
-				disableNextButton: true,
-			}));
-		}
+		State.setProperty((prevState) => ({
+			...prevState,
+			disableNextButton:
+				State.getProperty("currentStep") >= State.getProperty("steps").length,
+		}));
 	}
 }
 
