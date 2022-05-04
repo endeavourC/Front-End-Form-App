@@ -1,0 +1,19 @@
+.thankYou {
+	&__data {
+		margin: 25px auto;
+	}
+
+	&__grid {
+		margin-top: 25px;
+		display: grid;
+		gap: 32px;
+		grid-template-columns: minmax(0, 1fr);
+		@include mq($breakpoint-lg) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	&__image {
+		width: 100%;
+	}
+}
