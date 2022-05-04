@@ -1,9 +1,9 @@
-import State from "@/js/State";
-
 class FormCreator {
 	constructor() {
 		this.errors = [];
 		this.formContainerElement = document.createElement("div");
+
+		this.subscribers = [];
 	}
 
 	createField({
@@ -78,10 +78,15 @@ class FormCreator {
 			);
 		}
 
-		State.setProperty((prevState) => ({
-			...prevState,
-			disableNextButton: !!this.errors.length,
-		}));
+		this.subscribers.forEach((s) => s(this.errors));
+	}
+
+	subscribe(subscriber) {
+		this.subscribers.push(subscriber);
+	}
+
+	getErrors() {
+		return this.errors;
 	}
 }
 
