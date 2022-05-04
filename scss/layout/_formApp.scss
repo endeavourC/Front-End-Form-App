@@ -7,7 +7,11 @@
 	min-height: 530px;
 
 	&__stepContent {
-		animation: fadeIn 0.5s ease-in-out forwards;
+		&--active {
+			@media (prefers-reduced-motion: no-preference) {
+				animation: fadeIn 0.5s ease-in-out forwards;
+			}
+		}
 	}
 
 	&__steps {
@@ -64,8 +68,10 @@
 @keyframes fadeIn {
 	from {
 		opacity: 0;
+		transform: translateX(20px);
 	}
 	to {
 		opacity: 1;
+		transform: translateX(0px);
 	}
 }
