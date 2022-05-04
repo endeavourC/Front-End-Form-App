@@ -1,4 +1,7 @@
 .thankYou {
+	@media (prefers-reduced-motion: no-preference) {
+		animation: fadeIn 0.5s ease-in-out forwards;
+	}
 	&__data {
 		margin: 25px auto;
 	}
